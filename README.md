@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://img.shields.io/badge/42%20School-Ft_Transcendence-blue" alt="42 Ft_Transcendence"/>
+</p>
+
 # 🖼️ Screenshots
 
 Below are example screenshots of the main pages. Replace the image paths with your own:
@@ -10,8 +14,6 @@ Below are example screenshots of the main pages. Replace the image paths with yo
 
 **Home Page:**
 ![Home Page](docs/images/home-page.png)
-
-
 
 # ft_transcendence
 
@@ -52,26 +54,28 @@ ft_transcendence/
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Node.js 20+
 - Docker & Docker Compose
 - npm or yarn
 
-
 ### Quickstart
+
 1. **Generate .env file**
-	```bash
-	make setup
-	```
+   ```bash
+   make setup
+   ```
 2. **Install dependencies and build**
-	```bash
-	make
-	```
+   ```bash
+   make
+   ```
 3. **Start all services**
-	```bash
-	make up
-	```
+   ```bash
+   make up
+   ```
 
 ### Accessing the Frontend
+
 - Open [https://localhost:8443](https://localhost:8443) in your browser.
 - Other PCs on your network can connect using your host's IP address and port 8443 (e.g., `https://<host-ip>:8443`).
 
@@ -94,6 +98,7 @@ ft_transcendence/
 - Shared types/interfaces in `shared/`
 
 ### Useful Commands
+
 - Build all: `make build`
 - Start all: `make up`
 - Stop all: `make down`
@@ -105,12 +110,11 @@ ft_transcendence/
 ## 🐳 Docker
 
 - Build a service:  
-	`cd services/user-service && docker build -t ft_transcendence-user-service .`
+  `cd services/user-service && docker build -t ft_transcendence-user-service .`
 - Run all:  
-	`docker-compose up -d`
+  `docker-compose up -d`
 - Dev mode (hot reload):  
-	`docker-compose -f docker-compose.dev.yml up -d`
-
+  `docker-compose -f docker-compose.dev.yml up -d`
 
 ---
 
@@ -134,5 +138,8 @@ ft_transcendence/
 
 MIT
 
+---
 
-
+<p align="center">
+  <em>42 Ft_Transcendence &copy; 2025</em>
+</p>
