@@ -1,6 +1,4 @@
 #detach mode
-JAVA_JAR:="aibot/target/aibot-0.0.1-SNAPSHOT.jar"
-
 all: setup build
 # generation JWT secret/env file
 setup:
@@ -29,4 +27,4 @@ red: down build upd
 db:
 	docker compose exec user-service sqlite3 /user-service/data/user-service.db
 
-PHONY: up down build setup
+.PHONY: all upd up down build setup red db 

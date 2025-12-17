@@ -1,237 +1,131 @@
-# ft_transcendence - Microservices Architecture
+# 🖼️ Screenshots
 
-to run 
-https://localhost:8443/
-https://ip:8443/
+Below are example screenshots of the main pages. Replace the image paths with your own:
+
+**Login Page:**
+![Login Page](docs/images/login-page.png)
+
+**Registration Page:**
+![Registration Page](docs/images/registration-page.png)
+
+**Home Page:**
+![Home Page](docs/images/home-page.png)
 
 
 
+# ft_transcendence
 
+**A modern, full-stack, microservices-based Pong platform.**
 
+---
 
-A comprehensive microservices-based gaming platform built with Node.js, TypeScript, and Docker.
+## 🎮 Features
 
-## 🏗️ Project Structure
+- Real-time multiplayer Pong (1v1, AI, tournaments)
+- User authentication, profiles, stats, and 2FA
+- Matchmaking and friend system
+- Tournament mode with blockchain-backed score recording (Avalanche)
+- Modern frontend (Vite + TypeScript)
+- Scalable, containerized backend (Node.js, Fastify, SQLite/Postgres)
+- Traefik reverse proxy with HTTPS
+
+---
+
+## 🏗️ Architecture
 
 ```
 ft_transcendence/
-├── services/                    # Microservices
-│   ├── gateway-service/         # API Gateway
-│   ├── user-service/           # User Management (CRUD, Profiles, Stats, Auth)
-│   └── game-service/           # Game Logic & Real-time Gaming
-├── frontend/                   # Frontend Application
-├── shared/                     # Shared Types, DTOs, Events
-├── scripts/                    # DevOps, Testing, Migration Scripts
-└── docs/                       # API Documentation & Technical Docs
+├── frontend/         # Vite app (UI, game logic)
+├── services/
+│   ├── gateway-service/   # API Gateway (Fastify)
+│   ├── user-service/      # Users, auth, stats, 2FA
+│   ├── game-service/      # Game engine, WebSocket
+│   └── blockchain-service # Blockchain integration
+├── shared/           # Shared types, DTOs
+├── scripts/          # DevOps, setup, testing
+├── docs/             # Architecture, setup, API docs
+└── traefik/          # Traefik config (TLS, routing)
 ```
 
-For register send:
-Usernamen, Password, if2Factor,AvatarUrl,bio(string caped to 128 char)
----> User created succesfuly or error for example username exist already
+---
 
-For Settings:
-NewAvatarUrl, newName, newBioText,newPassword(and check vaild/no duplicate names etc.)
---->get some return "updates succesuly"?
-
-FriendRequest:
-	FriendsName,Date
-----> request send succesuly or error user dosent exist ? 
-
-AcceptFriendRequest:
-	myUserID,myUsername,otherUserName
-
-
-Get:
-
-FriendRequests:
-listofRequests,
-for each:
-	userId,UserName,requestSendDate, 
-
-FriendsComponent:
-listOfAllFriends
-for each:
-	userId, userName, isOnline(or status if we track inGame?), lastOnlineAt,
-
-For Elo component(used in online game setup page):
-PlayerName,Id,Current Rating,Highest Rating,eloGain/los since last game.
-
-1v1 Basic Statics:
-UserId, Usernamen, gamesWon, gamesLost, win/losesPercentage, curentWinStreak?, longestWinStreak?, 
-
-playervsAi:
-userId,UserName, gamesWon, gamesLost,win/losesPercentage, curentWinStreak?, longestWinStreak?
-
-For Tournamnet statistic component:
-TournamentWins,Tounraments Participated,win/losesPercentage
-
-
-Match history Component:(we dont need match history for tournaments, only 1v1 games)
-List of all matches
-For each Match:
-	match id, OpponentId, opponentName, isWin, userScore, opponentScore, date, opponentElo(at that time), Elogained/lost(at this game).
-
-For profilePage:
-userId, userName, AvatarUrl, BioText, isOnline, lastOnline, accountCreationDate,
-=======
-## Overview
-The 42 Transcendence Project is a real-time, multiplayer online Pong game with
-user authentication, matchmaking and different game-modes.
-Built to showcase advanced full-stack development, it integrates WebSockets,
-a retro-looking front-end, and a scalable Node.js backend with SQLite3 and TypeScript.
-
-<<<<<<< HEAD
-
-## License
-MIT
-=======
->>>>>>> user_management_merge
-//websocket messaging struckt 
-{
-	"event": string ,//for example "error" or "gameUpadate" etc
-	"type": string ,//for example on game update "paddleMove" or "scoreUpdate" etc
-	"data": any //json object with all needed data for the event and type 
-}
-
-## 🚀 Quick Start
-
-### Development Mode
-```bash
-# Start all services in development mode
-./scripts/start-dev.sh
-
-# Or start individual services
-cd services/user-service && npm run dev
-```
-
-### Production Mode
-```bash
-# Build all services
-./scripts/build-all.sh
-
-# Start with Docker Compose
-docker-compose up -d
-```
-
-## 📋 Services Overview
-
-### 🌐 Frontend (Port 5173)
-- React/Vue frontend application
-- User interface for gaming platform
-- Real-time game visualization
-
-### 🌐 Gateway Service (Port 3000)
-- API Gateway and routing
-- Rate limiting and security
-- Request/response transformation
-- Load balancing
-
-### 👤 User Service (Port 3002)
-- User CRUD operations
-- Profile management
-- User statistics
-- Match history
-- Account management
-- Authentication (JWT)
-- Password management
-- Two-factor authentication
-
-### 🎮 Game Service (Ports 5001, 5002)
-- Real-time game logic
-- WebSocket connections
-- Game state management
-- Score tracking
-- Pong game engine
-
-## 🛠️ Development
+## 🚀 Getting Started
 
 ### Prerequisites
 - Node.js 20+
 - Docker & Docker Compose
 - npm or yarn
 
-### Setup
-```bash
-# Clone the repository
-git clone <repository-url>
-cd ft_transcendence
 
-# Install dependencies for all services
-find services -name "package.json" -execdir npm install \;
+### Quickstart
+1. **Generate .env file**
+	```bash
+	make setup
+	```
+2. **Install dependencies and build**
+	```bash
+	make
+	```
+3. **Start all services**
+	```bash
+	make up
+	```
 
-# Start development environment
-./scripts/start-dev.sh
-```
+### Accessing the Frontend
+- Open [https://localhost:8443](https://localhost:8443) in your browser.
+- Other PCs on your network can connect using your host's IP address and port 8443 (e.g., `https://<host-ip>:8443`).
 
-### Service Development
-Each service is independent and can be developed separately:
+---
 
-```bash
-# Work on user service
-cd services/user-service
-npm run dev
+## 🧩 Service Overview
 
-# Work on game service
-cd services/game-service
-npm run dev
-```
+- **Frontend**: Modern UI, game client (port 8443 via Traefik)
+- **Gateway Service**: API gateway, routing, security (port 3000)
+- **User Service**: User CRUD, profiles, stats, 2FA (port 3002)
+- **Game Service**: Real-time Pong, WebSocket (ports 5001, 5002)
+- **Blockchain Service**: Tournament score recording (optional)
+
+---
+
+## 🛠️ Development
+
+- Each service is independent (develop/run separately)
+- Hot reload supported in Docker dev setup
+- Shared types/interfaces in `shared/`
+
+### Useful Commands
+- Build all: `make build`
+- Start all: `make up`
+- Stop all: `make down`
+- Rebuild: `make red`
+- Open DB shell: `make db`
+
+---
 
 ## 🐳 Docker
 
-### Build Individual Service
-```bash
-cd services/user-service
-docker build -t ft_transcendence-user-service .
-```
+- Build a service:  
+	`cd services/user-service && docker build -t ft_transcendence-user-service .`
+- Run all:  
+	`docker-compose up -d`
+- Dev mode (hot reload):  
+	`docker-compose -f docker-compose.dev.yml up -d`
 
-### Run All Services
-```bash
-docker-compose up -d
-```
 
-### Development with Hot Reload
-```bash
-docker-compose -f docker-compose.dev.yml up -d
-```
+---
 
-## 📚 API Documentation
+## ⚙️ Configuration
 
-- **Frontend**: http://localhost:5173
-- **Gateway**: http://localhost:3000/docs
-- **User Service**: http://localhost:3002/docs
-- **Game Service**: http://localhost:5001/docs (WebSocket: ws://localhost:5001)
+- Each service uses its own `.env` file (see `generate_env.sh`)
+- Traefik config in `traefik/`
+- Database: SQLite (dev), Postgres (prod possible)
 
-## 🧪 Testing
+---
 
-```bash
-# Run tests for all services
-find services -name "package.json" -execdir npm test \;
 
-# Run tests for specific service
-cd services/user-service
-npm test
-```
+## 📄 License
 
-## 📦 Shared Resources
+MIT
 
-The `shared/` directory contains:
-- **types.ts**: Common TypeScript interfaces
-- **dtos.ts**: Data Transfer Objects
-- **events.ts**: Event definitions for inter-service communication
-- **utils.ts**: Shared utility functions
 
-## 🔧 Configuration
-
-Each service has its own configuration:
-- Environment variables
-- Docker configuration
-- Database connections
-- Service discovery
-
-## 📈 Monitoring & Logging
-
-- Centralized logging
-- Health checks for all services
-- Performance monitoring
-- Error tracking
 

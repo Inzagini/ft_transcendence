@@ -157,7 +157,7 @@ export function registerView(router: Router) {
         if (data.username.length > 30) return "Username must be less than 30 characters";
         
         if (!data.password) return "Password is required";
-        if (data.password.length < 6) return "Password must be at least 6 characters";
+        if (data.password.length < 8) return "Password must be at least 8 characters";
         
         if (data.password !== data.repeatPassword) return "Passwords don't match";
 
