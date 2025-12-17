@@ -122,6 +122,13 @@ ft_transcendence/
 
 ---
 
+## 👥 Team
+
+- [tesla33io](https://github.com/tesla33io)
+- [Inzagini](https://github.com/Inzagini)
+- [eschencode](https://github.com/eschencode)
+- [hsirenko](https://github.com/hsirenko)
+- [DamianGacic](https://github.com/DamianGacic)
 
 ## 📄 License
 
