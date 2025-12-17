@@ -16,6 +16,9 @@ HOSTNAME=$(hostname)
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # On Linux, get the first non-loopback IP
     LOCAL_IP=$(hostname -I | awk '{print $1}')
+    if [[ -z "$LOCAL_IP" ]]; then
+        LOCAL_IP=$(ip route get 1 | awk '{print $7; exit}')
+    fi
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     # On macOS, get IP from network interface
     LOCAL_IP=$(ifconfig | grep -E "inet.*broadcast" | awk '{print $2}' | head -n1)
