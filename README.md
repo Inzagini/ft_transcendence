@@ -134,11 +134,7 @@ ft_transcendence/
 - [hsirenko](https://github.com/hsirenko)
 - [DamianGacic](https://github.com/DamianGacic)
 
-## 📄 License
 
-MIT
-
----
 
 <p align="center">
   <em>42 Ft_Transcendence &copy; 2025</em>
